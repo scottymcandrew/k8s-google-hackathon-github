@@ -13,6 +13,9 @@ spec:
       containers:
         - name: juice-shop
           image: bkimminich/juice-shop
+          env:
+            - name: NODE_ENV
+              value: ctf
           ports:
             - containerPort: 3000
 ---
@@ -29,20 +32,9 @@ spec:
   type: LoadBalancer
   loadBalancerIP: 10.5.2.5
   ports:
-    - port: 80
-  selector:
-    app: juice-shop
-    tier: frontend
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: juice-shop
-spec:
-  ports:
-    - port: 80
-      protocol: TCP
+    - protocol: TCP
+      port: 80
       targetPort: 3000
   selector:
     app: juice-shop
-  #type: NodePort
+    tier: frontend
