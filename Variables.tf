@@ -32,7 +32,8 @@ variable "firewall_name" {
 }
 
 variable "image_fw" {
-  default = "https://www.googleapis.com/compute/v1/projects/paloaltonetworksgcp-public/global/images/vmseries-bundle1-810"
+  #default = "https://www.googleapis.com/compute/v1/projects/paloaltonetworksgcp-public/global/images/vmseries-bundle1-810"
+  default = "https://www.googleapis.com/compute/v1/projects/paloaltonetworksgcp-public/global/images/vmseries-bundle2-901"
 }
 
 variable "machine_type_fw" {
@@ -40,7 +41,8 @@ variable "machine_type_fw" {
 }
 
 variable "bootstrap_bucket_fw" {
-  default = "gcp-2018-djs"
+  #default = "gcp-2018-djs"
+  default = "hack-alto-thon-gcp-k8s-fw-bucket"
 }
 
 variable "interface_0_name" {
