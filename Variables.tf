@@ -42,8 +42,8 @@ variable "machine_type_fw" {
 }
 
 variable "bootstrap_bucket_fw" {
-  default = "gcp-2018-djs"
-  #default = "hack-alto-thon-gcp-k8s-fw-bucket"
+  #default = "gcp-2018-djs"
+  default = "k8s-fw-bucket"
 }
 
 variable "interface_0_name" {
