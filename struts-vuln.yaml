@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: struts-vuln
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: struts-vuln
+        tier: frontend
+    spec:
+      containers:
+        - name: struts-vuln
+          image: scotty2hotty/cve-2018-11776:v1
+#          env:
+#            - name: NODE_ENV
+#              value: ctf
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: struts-vuln-frontend
+  annotations:
+    cloud.google.com/load-balancer-type: "Internal"
+  labels:
+    app: struts-vuln-frontend
+    tier: frontend
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 10.5.2.5
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  selector:
+    app: struts-vuln
+    tier: frontend
