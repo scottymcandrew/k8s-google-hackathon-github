@@ -181,11 +181,11 @@ resource "google_container_cluster" "cluster" {
     }
   }
 
-  addons_config {
-    http_load_balancing {
-      disabled = true
-    }
-  }
+  #addons_config {
+  #  http_load_balancing {
+  #    disabled = true
+  #  }
+  #}
 
   node_config {
     disk_size_gb = "32"
