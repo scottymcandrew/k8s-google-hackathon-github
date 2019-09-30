@@ -219,12 +219,16 @@ resource "google_compute_route" "apiserver-outbound" {
   depends_on = [google_container_cluster.cluster]
 }
 
-output "pan-tf-trust-ip" {
-  value = google_compute_instance.firewall.*.network_interface.2.address
+output "pan-tf-management-ip" {
+  value = google_compute_instance.firewall.network_interface.0.access_config.0.nat_ip
+}
+
+output "service-frontend-ip" {
+  value = google_compute_instance.firewall.network_interface.1.access_config.0.nat_ip
 }
 
 output "pan-tf-name" {
-  value = google_compute_instance.firewall.*.name
+  value = google_compute_instance.firewall.name
 }
 
 output "k8s-cluster-name" {
