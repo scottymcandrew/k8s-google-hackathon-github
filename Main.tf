@@ -220,11 +220,11 @@ resource "google_compute_route" "apiserver-outbound" {
 }
 
 output "pan-tf-management-ip" {
-  value = google_compute_instance.firewall.network_interface.0.access_config.0.nat_ip
+  value = "https://${google_compute_instance.firewall.network_interface.0.access_config.0.nat_ip}"
 }
 
 output "service-frontend-ip" {
-  value = google_compute_instance.firewall.network_interface.1.access_config.0.nat_ip
+  value = "http://${google_compute_instance.firewall.network_interface.1.access_config.0.nat_ip}"
 }
 
 output "pan-tf-name" {
