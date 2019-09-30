@@ -12,12 +12,12 @@ spec:
     spec:
       containers:
         - name: struts-vuln
-          image: scotty2hotty/cve-2018-11776:v1
+          image: piesecurity/apache-struts2-cve-2017-5638
 #          env:
 #            - name: NODE_ENV
 #              value: ctf
           ports:
-            - containerPort: 3000
+            - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -34,7 +34,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 3000
+      targetPort: 8080
   selector:
     app: struts-vuln
     tier: frontend
