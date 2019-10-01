@@ -167,7 +167,7 @@ resource "google_compute_instance" "firewall" {
 resource "google_container_cluster" "cluster" {
   name               = "cluster-1"
   location           = var.zone
-  min_master_version = "1.12.8-gke.10"
+  min_master_version = "1.13.7-gke.8"
   initial_node_count = 2
 
   logging_service    = "none"
