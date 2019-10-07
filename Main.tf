@@ -221,7 +221,7 @@ resource "google_compute_instance" "kali" {
   }
 
   network_interface {
-    subnetwork = "google_compute_subnetwork.untrust-sub"
+    subnetwork = google_compute_subnetwork.untrust-sub.self_link
     network_ip = "10.5.1.66"
 
     access_config {
@@ -244,6 +244,7 @@ resource "google_compute_instance" "kali" {
   }
 
   depends_on = [
+    google_compute_subnetwork.untrust-sub,
     google_compute_network.untrust,
   ]
 }
