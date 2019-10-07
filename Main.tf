@@ -91,8 +91,8 @@ resource "google_compute_firewall" "allow-inbound" {
   network = google_compute_network.untrust.self_link
 
   allow {
-    protocol = "tcp"
-    ports    = ["80", "22"]
+    protocol = "all"
+    # ports    = ["80", "22"]
   }
 
   source_ranges = ["0.0.0.0/0"]
@@ -284,4 +284,3 @@ output "k8s-cluster-endpoint" {
 output "kubectl-connection" {
   value = "gcloud container clusters get-credentials ${google_container_cluster.cluster.name} --zone ${var.zone} --project ${var.my_gcp_project}"
 }
-
