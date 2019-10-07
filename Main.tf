@@ -234,7 +234,7 @@ resource "google_compute_instance" "kali" {
     ssh-keys = "admin:${var.gce_ssh_pub_key}"
   }
 
-  metadata_startup_script = "curl https://raw.githubusercontent.com/jamesholland-uk/auto-hack-cloud/master/kali-startup.sh > kali-startup.sh \n chmod 755 kali-startup.sh \n ./kali-startup.sh ${var.subnetOctet}"
+  metadata_startup_script = "curl https://raw.githubusercontent.com/jamesholland-uk/auto-hack-cloud/master/kali-startup.sh > kali-startup.sh \n chmod 755 kali-startup.sh \n ./kali-startup.sh 1"
 
   service_account {
     scopes = [
