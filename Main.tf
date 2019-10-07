@@ -210,7 +210,7 @@ resource "google_container_cluster" "cluster" {
 }
 
 resource "google_compute_instance" "kali" {
-  name = "Attacker-1"
+  name = "attacker-1"
   machine_type = "n1-standard-1"
   zone = var.zone
 
