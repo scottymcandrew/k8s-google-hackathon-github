@@ -245,7 +245,6 @@ resource "google_compute_instance" "kali" {
 
   depends_on = [
     google_compute_network.untrust,
-    google_compute_subnetwork.untrust-sub,
   ]
 }
 
