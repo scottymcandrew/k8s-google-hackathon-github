@@ -209,6 +209,44 @@ resource "google_container_cluster" "cluster" {
   ]
 }
 
+resource "google_compute_instance" "kali" {
+  name = "Attacker-1"
+  machine_type = "n1-standard-1"
+  zone = var.zone
+
+  boot_disk {
+    initialize_params {
+      image = "centos-cloud/centos-7-v20180815"
+    }
+  }
+
+  network_interface {
+    subnetwork = "google_compute_subnetwork.untrust-sub"
+    network_ip = "10.5.1.66"
+
+    access_config {
+      // Ephemeral public IP
+    }
+  }
+
+  metadata = {
+    serial-port-enable = true
+    ssh-keys = "admin:${var.gce_ssh_pub_key}"
+  }
+
+  metadata_startup_script = "curl https://raw.githubusercontent.com/jamesholland-uk/auto-hack-cloud/master/kali-startup.sh > kali-startup.sh \n chmod 755 kali-startup.sh \n ./kali-startup.sh ${var.subnetOctet}"
+
+  service_account {
+    scopes = [
+      "userinfo-email",
+      "compute-ro",
+      "storage-ro"]
+  }
+
+  depends_on = [
+    google_compute_subnetwork.untrust-sub]
+}
+
 // Create VPC route for cluster outbound access - bypass firewall
 resource "google_compute_route" "apiserver-outbound" {
   name             = "apiserver-outbound"
