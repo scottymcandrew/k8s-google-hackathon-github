@@ -234,7 +234,7 @@ resource "google_compute_instance" "kali" {
     ssh-keys = "admin:${var.gce_ssh_pub_key}"
   }
 
-  metadata_startup_script = "curl https://raw.githubusercontent.com/jamesholland-uk/auto-hack-cloud/master/kali-startup.sh > kali-startup.sh \n chmod 755 kali-startup.sh \n ./kali-startup.sh 1"
+  metadata_startup_script = "curl https://raw.githubusercontent.com/scottymcandrew/auto-hack-cloud/master/kali-startup.sh > kali-startup.sh \n chmod 755 kali-startup.sh \n ./kali-startup.sh changeme"
 
   service_account {
     scopes = [
@@ -283,4 +283,9 @@ output "k8s-cluster-endpoint" {
 # Output command to connect Kubectl to created cluster
 output "kubectl-connection" {
   value = "gcloud container clusters get-credentials ${google_container_cluster.cluster.name} --zone ${var.zone} --project ${var.my_gcp_project}"
+}
+
+# Link to Attacker VM
+output "attacker-connection" {
+    value = "http://${google_compute_instance.kali.network_interface.0.access_config.0.nat_ip}:4200"
 }

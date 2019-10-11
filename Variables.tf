@@ -33,8 +33,10 @@ variable "firewall_name" {
 
 variable "image_fw" {
   #default = "https://www.googleapis.com/compute/v1/projects/paloaltonetworksgcp-public/global/images/vmseries-bundle1-810"
-  default = "https://www.googleapis.com/compute/v1/projects/paloaltonetworksgcp-public/global/images/vmseries-bundle2-901"
+  #default = "https://www.googleapis.com/compute/v1/projects/paloaltonetworksgcp-public/global/images/vmseries-bundle2-901"
   #default = "https://www.googleapis.com/compute/v1/projects/paloaltonetworksgcp-public/global/images/vmseries-byol-901"
+  #default = "https://www.googleapis.com/compute/v1/projects/paloaltonetworksgcp-public/global/images/vmseries-bundle1-901"
+  default = "https://www.googleapis.com/compute/v1/projects/paloaltonetworksgcp-public/global/images/vmseries-bundle2-814"
 }
 
 variable "machine_type_fw" {
@@ -43,7 +45,7 @@ variable "machine_type_fw" {
 
 variable "bootstrap_bucket_fw" {
   #default = "gcp-2018-djs"
-  default = "k8s-fw-bucket"
+  default = "k8s-fw-bucket-final"
 }
 
 variable "interface_0_name" {
